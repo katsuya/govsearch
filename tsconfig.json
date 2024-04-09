@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "experimentalDecorators": false,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noUncheckedIndexedAccess": true,
+    "paths": {
+      "~/*": ["./frontend/*"]
+    },
+    "resolveJsonModule": true,
+    "skipLibCheck": false,
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "ES2022"
+  },
+  "include": ["env.d.ts", "frontend/**/*.ts", "frontend/**/*.tsx"]
+}

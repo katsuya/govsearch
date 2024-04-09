@@ -1,0 +1,19 @@
+services:
+  vespa:
+    image: vespaengine/vespa:8.324.16
+    ports:
+      - 4080:4080
+      - 19071:19071
+      - 19092:19092
+    ulimits:
+      nofile:
+        hard: 262144
+        soft: 32768
+      nproc:
+        hard: 409600
+        soft: 32768
+    volumes:
+      - vespa:/opt/vespa/var
+version: "3.4"
+volumes:
+  vespa: null

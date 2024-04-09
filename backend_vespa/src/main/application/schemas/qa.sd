@@ -1,0 +1,116 @@
+schema qa {
+  document qa {
+    field lang type string {
+      indexing: set_language
+    }
+
+    field doc_id type string {
+      indexing: attribute | summary
+      attribute: fast-search
+      rank: filter
+    }
+
+    field category_major type string {
+      indexing: summary | attribute
+    }
+
+    field category_medium type string {
+      indexing: summary | attribute
+    }
+
+    field category_minor type string {
+      indexing: summary | attribute
+    }
+
+    field question type string {
+      indexing: summary | attribute
+    }
+
+    field answer type string {
+      indexing: summary | index
+      index: enable-bm25
+    }
+  }
+
+  field question_exact type string {
+    indexing: input question | index
+    match: word
+  }
+
+  field question_bm25 type string {
+    indexing: input question | index
+    index: enable-bm25
+  }
+
+  field question_ngram type string {
+    indexing: input question | index
+    match {
+      gram
+      gram-size: 2
+    }
+  }
+
+  field question_embedding_me5s type tensor<float>(x[384]) {
+    indexing: {
+       "passage: " . input question | embed multilingual-e5-small | attribute
+    }
+    attribute {
+      distance-metric: angular
+    }
+  }
+
+  field answer_embedding_me5s type tensor<float>(x[384]) {
+    indexing: {
+       "passage: " . input answer | embed multilingual-e5-small | attribute
+    }
+    attribute {
+      distance-metric: angular
+    }
+  }
+
+  fieldset default {
+    fields: question_bm25, answer
+  }
+
+  fieldset question {
+    fields: question
+  }
+
+  rank-profile semantic inherits default {
+    inputs {
+      query(q) tensor<float>(x[384])
+    }
+    function question_semantic() {
+      expression: max(cos(distance(field, question_embedding_me5s)), 0)
+    }
+    function answer_semantic() {
+      expression: max(cos(distance(field, answer_embedding_me5s)), 0)
+    }
+    first-phase {
+      expression {
+        question_semantic * 0.5 + answer_semantic * 0.5
+      }
+    }
+    match-features {
+      question_semantic
+      answer_semantic
+    }
+  }
+
+  rank-profile question_semantic inherits default {
+    inputs {
+      query(q) tensor<float>(x[384])
+    }
+    function question_semantic() {
+      expression: max(cos(distance(field, question_embedding_me5s)), 0)
+    }
+    first-phase {
+      expression {
+        question_semantic
+      }
+    }
+    match-features {
+      question_semantic
+    }
+  }
+}

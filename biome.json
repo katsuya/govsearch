@@ -1,0 +1,36 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.6.3/schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "files": {
+    "include": [
+      "*.ts",
+      "*.json",
+      "*.yml",
+      "frontend/**/*.ts",
+      "frontend/**/*.tsx",
+      "scripts/**/*.ts"
+    ],
+    "ignore": [
+      "backend_vespa/multilingual-e5*",
+      "backend_vespa/src/main/application/model",
+      "backend_vespa/target"
+    ]
+  },
+  "formatter": {
+    "indentStyle": "space"
+  },
+  "javascript": {
+    "formatter": {
+      "semicolons": "asNeeded"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "ignore": ["frontend/generated/*.ts"],
+    "rules": {
+      "recommended": true
+    }
+  }
+}

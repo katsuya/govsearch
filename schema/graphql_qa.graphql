@@ -1,0 +1,43 @@
+type Query {
+  questions(query: String): QuestionsPayload
+  answers(query: String): AnswersPayload
+}
+
+type Subscription {
+  generateSummary(
+    query: String!
+    docIds: [String!]!
+  ): GenerateSummaryPayload
+}
+
+type AnswersPayload {
+  answers: [Answer!]
+}
+
+type QuestionsPayload {
+  questions: [Question!]
+}
+
+type GenerateSummaryPayload {
+  summary: String!
+}
+
+type Answer {
+  id: String!
+  docId: String!
+  categoryMajor: String
+  categoryMedium: String
+  categoryMinor: String
+  question: String!
+  answer: String!
+  score: Float
+}
+
+type Question {
+  id: String!
+  docId: String!
+  categoryMajor: String
+  categoryMedium: String
+  categoryMinor: String
+  question: String!
+}

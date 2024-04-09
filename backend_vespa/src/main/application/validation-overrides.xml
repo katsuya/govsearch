@@ -1,0 +1,4 @@
+<validation-overrides>
+  <!-- NOTE: https://github.com/vespa-engine/vespa/blob/195f000f27001b74721649905a9a1e48fb9f665c/config-model-api/src/main/java/com/yahoo/config/application/api/ValidationId.java -->
+  <allow until='2024-04-04'>indexing-change</allow>
+</validation-overrides>

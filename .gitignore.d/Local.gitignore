@@ -1,0 +1,6 @@
+tmp
+.ruff_cache
+**/__pycache__
+
+backend_vespa/multilingual-e5-*/*
+backend_vespa/multilingual-e5-*-quantized/*

@@ -1,0 +1,60 @@
+services:
+  backend:
+    build: .
+    command:
+      - uvicorn
+      - backend:app
+      - --host
+      - 0.0.0.0
+      - --port
+      - "7860"
+      - --log-level
+      - debug
+      - --reload
+    depends_on:
+      - vespa
+    entrypoint:
+      - /usr/bin/env
+    environment:
+      OPENAI_API_KEY: null
+      TZ: UTC
+    image: govsearch:latest
+    ports:
+      - 7860:7860
+  frontend:
+    build: .
+    command:
+      - npx
+      - remix
+      - vite:dev
+      - --host
+      - 0.0.0.0
+      - --port
+      - "7861"
+    depends_on:
+      - backend
+    entrypoint:
+      - /usr/bin/env
+    environment:
+      TZ: UTC
+    image: govsearch:latest
+    ports:
+      - 7861:7861
+  vespa:
+    image: vespaengine/vespa:8.324.16
+    ports:
+      - 4080:4080
+      - 19071:19071
+      - 19092:19092
+    ulimits:
+      nofile:
+        hard: 262144
+        soft: 32768
+      nproc:
+        hard: 409600
+        soft: 32768
+    volumes:
+      - vespa:/opt/vespa/var
+version: "3.4"
+volumes:
+  vespa: null

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<services version="1.0" xmlns:deploy="vespa">
+  <container id="container01" version="1.0">
+    <components>
+      <component
+        id="kuromoji"
+        class="jp.co.yahoo.vespa.language.lib.kuromoji.KuromojiLinguistics"
+        bundle="kuromoji-linguistics"
+      >
+        <config name="language.lib.kuromoji.kuromoji">
+          <mode>search</mode>
+          <nakaguro_split>true</nakaguro_split>
+          <all_language>false</all_language>
+          <ignore_case>true</ignore_case>
+        </config>
+      </component>
+      <component id="multilingual-e5-small" type="hugging-face-embedder">
+        <transformer-model
+          model-id="multilingual-e5-small-cpu-friendly"
+          path="model/multilingual-e5-small-model_quantized.onnx"
+        />
+        <tokenizer-model
+          model-id="multilingual-e5-small-cpu-friendly-vocab"
+          path="model/multilingual-e5-small-tokenizer.json"
+        />
+      </component>
+    </components>
+    <document-processing />
+    <document-api />
+    <search />
+    <http>
+      <server id="container01" port="4080" />
+    </http>
+    <nodes>
+      <node hostalias="node01" />
+    </nodes>
+  </container>
+  <content id="content01" version="1.0">
+    <min-redundancy>2</min-redundancy>
+    <documents>
+      <document type="qa" mode="index" />
+      <document-processing cluster="container01" />
+    </documents>
+    <nodes>
+      <node hostalias="node01" distribution-key="0" />
+    </nodes>
+    <tuning>
+      <resource-limits>
+        <disk>0.95</disk>
+        <memory>0.8</memory>
+      </resource-limits>
+    </tuning>
+  </content>
+</services>
