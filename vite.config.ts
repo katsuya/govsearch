@@ -6,11 +6,11 @@ export default defineConfig({
   server: {
     proxy: {
       "/graphql": {
-        target: "http://localhost:7860",
+        target: "http://127.0.0.1:7860",
         changeOrigin: false,
       },
       "/ws/graphql": {
-        target: "ws://localhost:7860",
+        target: "ws://127.0.0.1:7860",
         changeOrigin: false,
         ws: true,
       },
