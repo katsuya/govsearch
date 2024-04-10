@@ -50,7 +50,10 @@ open http://localhost:7861
     - https://github.com/openai/openai-python
     - https://rye-up.com/
 - Search
-    - https://docs.vespa.ai/en/text-matching.html
+    - https://docs.vespa.ai/en/embedding.html
+    - https://docs.vespa.ai/en/lucene-linguistics.html
+    - https://docs.vespa.ai/en/reference/query-language-reference.html
+    - https://docs.vespa.ai/en/operations-selfhosted/docker-containers.html
 - Graphql
     - https://graphql.org/learn/
     - https://the-guild.dev/graphql/codegen/docs/guides/react-vue
