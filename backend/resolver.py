@@ -128,7 +128,7 @@ async def resolve_question(
     questions: list[Question] = data_questions
 
     query = params_parsed.query
-    if query is None:
+    if not query:
         logger.warning("Query is empty", params=params_parsed)
         return {"questions": questions}
     query_parsed = (
@@ -145,12 +145,11 @@ async def resolve_question(
     base = "select * from qa where"
     anno = "{targetHits:100,approximate:false}"
     cond01 = "({targetHits:100}userInput(@condQuery))"
-    cond02 = f'(question matches "{query_parsed}")'
-    cond03 = f"({anno}nearestNeighbor(question_embedding_me5s, q))"
+    cond02 = f"({anno}nearestNeighbor(question_embedding_me5s, q))"
 
     async with clientVespa.asyncio() as sess:
         res: VespaQueryResponse = await sess.query(
-            yql=f"{base} {cond01} or {cond02} or {cond03}",
+            yql=f"{base} {cond01} or {cond02}",
             lang="ja",
             hits=20,
             ranking="question_semantic",

@@ -1,9 +1,14 @@
-import { cacheExchange } from "@urql/exchange-graphcache"
 import {
   type SubscribePayload,
   createClient as createWSClient,
 } from "graphql-ws"
-import { Client, fetchExchange, ssrExchange, subscriptionExchange } from "urql"
+import {
+  Client,
+  cacheExchange,
+  fetchExchange,
+  ssrExchange,
+  subscriptionExchange,
+} from "urql"
 
 const isClientSide = typeof window !== "undefined"
 
@@ -21,7 +26,7 @@ if (isClientSide) {
 export const client = new Client({
   url: "/graphql",
   exchanges: [
-    cacheExchange({}),
+    cacheExchange,
     ssr,
     fetchExchange,
     ...(isClientSide
