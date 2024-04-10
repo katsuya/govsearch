@@ -52,7 +52,7 @@ export function QA() {
         direction={isMobile ? "vertical" : "horizontal"}
         className={cn(
           "items-stretch h-full",
-          isMobile ? "min-h-screen" : "max-h-screen",
+          isMobile ? "min-h-[100svh]" : "max-h-[100svh]",
         )}
       >
         <ResizablePanel defaultSize={defaultLayout[0]}>
