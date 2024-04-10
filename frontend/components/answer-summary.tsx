@@ -63,8 +63,8 @@ export function AnswerSummary({ query, items }: AnswerSummaryProps) {
             </div>
           </div>
         ) : (
-          <div className="p-8 text-center text-muted-foreground">
-            No summary generated
+          <div className="pt-8 md:pt-40 text-center text-muted-foreground text-sm">
+            検索結果がまだありません
           </div>
         )}
       </ScrollArea>

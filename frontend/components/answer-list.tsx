@@ -51,8 +51,13 @@ export function AnswerList({ items }: AnswerListProps) {
           ))}
         </div>
       ) : (
-        <div className="p-8 text-center text-muted-foreground">
-          No summary generated
+        <div className="pt-4 md:pt-8 text-center text-muted-foreground text-sm leading-6">
+          <p className="mb-2">ヒント:</p>
+          <ul>
+            <li>児童手当の申請期限を教えてください</li>
+            <li>マイナンバーカードに記載されている電子証明書とは？</li>
+            <li>年金は「いつから」「いくら」受け取れますか？</li>
+          </ul>
         </div>
       )}
     </ScrollArea>
