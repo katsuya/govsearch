@@ -66,7 +66,7 @@ export function QA() {
               <button
                 type="button"
                 onClick={() => setOpen((v) => !v)}
-                className="inline-flex items-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground px-4 py-2 relative w-full justify-start rounded-[0.5rem] bg-background text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:min-w-80 md:max-w-xl md:w-auto"
+                className="inline-flex items-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground px-4 py-2 relative w-full justify-start rounded-[0.5rem] bg-background text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:min-w-80"
               >
                 <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
                 <span className="truncate hidden pl-4 lg:inline-flex">
