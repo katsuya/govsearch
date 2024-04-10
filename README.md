@@ -18,6 +18,10 @@ approach instead of a chatbot. Internally, it utilizes Vespa as the
 search engine, Starlette for the backend, Remix for the frontend, and
 relies on documents provided by Govbot.
 
+You can check the demo screen from the following link:
+
+    https://huggingface.co/spaces/hicustomer/govsearch
+
 ## Usage
 
 To run the application, you need to have Docker installed. Then, you
