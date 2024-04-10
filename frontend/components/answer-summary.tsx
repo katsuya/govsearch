@@ -53,11 +53,11 @@ export function AnswerSummary({ query, items }: AnswerSummaryProps) {
         <h1 className="text-xl font-bold">TL;DR</h1>
       </div>
       <Separator />
-      <ScrollArea>
+      <ScrollArea className="h-screen">
         {summary ? (
           <div className="flex flex-1 flex-col">
             <div className="flex-1 p-4">
-              <article className="prose prose-sm max-w-none overscroll-auto">
+              <article className="prose prose-sm max-w-none overscroll-auto h-[1000px]">
                 <Markdown>{summary}</Markdown>
               </article>
             </div>
