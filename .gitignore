@@ -64,6 +64,12 @@ tmp
 
 backend_vespa/multilingual-e5-*/*
 backend_vespa/multilingual-e5-*-quantized/*
+
+# Sentry Config File
+.sentryclirc
+
+# Sentry Config File
+.env.sentry-build-plugin
 ## .gitignore.d/Local.gitignore END
 ## .gitignore.d/Node.gitignore START
 # Logs

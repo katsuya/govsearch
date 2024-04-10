@@ -5,7 +5,9 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteError,
 } from "@remix-run/react"
+import { captureRemixErrorBoundaryError } from "@sentry/remix"
 import { Loader2 } from "lucide-react"
 import { Provider } from "urql"
 import { client } from "~/lib/urql"
@@ -31,6 +33,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </body>
     </html>
   )
+}
+
+export const ErrorBoundary = () => {
+  const error = useRouteError()
+  captureRemixErrorBoundaryError(error)
+  return <div>Something went wrong</div>
 }
 
 export default function App() {

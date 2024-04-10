@@ -1,4 +1,5 @@
 import { vitePlugin as remix } from "@remix-run/dev"
+import { sentryVitePlugin } from "@sentry/vite-plugin"
 import { defineConfig } from "vite"
 import tsconfigPaths from "vite-tsconfig-paths"
 
@@ -16,11 +17,21 @@ export default defineConfig({
       },
     },
   },
+
   plugins: [
     remix({
       appDirectory: "frontend",
       ssr: false,
     }),
     tsconfigPaths(),
+    sentryVitePlugin({
+      org: "hicustomer",
+      project: "govsearch",
+      telemetry: true,
+    }),
   ],
+
+  build: {
+    sourcemap: true,
+  },
 })
