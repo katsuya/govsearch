@@ -26,7 +26,7 @@ export function AnswerList({ items }: AnswerListProps) {
                   </div>
                 </div>
               </div>
-              <article className="prose prose-sm">
+              <article className="prose prose-sm max-w-none">
                 <div
                   className="whitespace-pre-line"
                   /* biome-ignore lint/security/noDangerouslySetInnerHtml:  */
